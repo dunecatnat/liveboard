@@ -1,4 +1,4 @@
-import Order from "./order";
+import Order from "./order"; // to use in eventuality, makes for cleaner code
 import * as _ from "lodash";
 
 /**
@@ -18,6 +18,8 @@ export let removeOrderFromLiveBoard = (order, ordersCollection) => {
 
 /**
  * Remove individual order by orderId (eventual application)
+ * orderId is not a part of requirement, however I would include it as it makes for more
+ * consitent data, that is easier to manipulate
  * @param {*} order 
  * @param {*} ordersCollection 
  */
@@ -68,6 +70,7 @@ function getOrdersByType(ordersCollection, type) {
  * formatOrderByPrice
  * sums weights of orders with the same price
  * returns new array of orders
+ * at the moment I left the userId property, but this could be removed or replaced by something more relevant
  * @param {*} ordersCollection 
  */
 function formatOrdersByPrice(ordersCollection) {
@@ -82,7 +85,6 @@ function formatOrdersByPrice(ordersCollection) {
                 ordersFormatted.push(order);
             } else {
                 if(ordersFormatted[index].type === order.type) {
-                    // let orderWeightSum = ordersFormatted[index].weight + order.weight;
                     ordersFormatted[index].weight = ordersFormatted[index].weight + order.weight;
                 } else {
                     ordersFormatted.push(order);
@@ -90,7 +92,6 @@ function formatOrdersByPrice(ordersCollection) {
                 
             }
         }
-        
     });
     return ordersFormatted;
 }
@@ -110,7 +111,6 @@ function sortOrders(ordersCollection, type) {
     } else {
         ordersCollectionCopy = _.orderBy(ordersCollectionCopy, ['price'], ['desc']);
     }
-    console.log('orders in sort', ordersCollectionCopy);
     return ordersCollectionCopy;
 }
 

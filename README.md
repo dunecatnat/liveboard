@@ -2,6 +2,9 @@
 
 ## Usage instructions:
 run `npm install` to install all the dependencies
+run `npm run dev-server` to run the library locally
+run `npm run dev` to compile the code for development
+run `npm run build` to compile the code for production
 
 ## Methods description
 There are 3 main methods
